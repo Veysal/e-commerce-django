@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Магазин компьютерной техники</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="logo"><a href="{% url 'home' %}" class="logo-link">TechStore</a></div>
+            <!-- Навигация -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            <!-- Корзина и поиск -->
+            <div class="header-actions">
+                <input type="text" placeholder="Поиск">
+                <a href="#" class="cart-icon">🛒<span class="cart-count">0</span></a>
+                <a href="#" class="login-btn">Войти</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+     <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Добро пожаловать в TechStore!</h1>
+                <p>Современные комплекующие и периферия по лучшим ценам</p>
+                <a href="#" class="btn btn-primary">Перейти в каталог</a>
+            </div>
+        </section>
+
+        <!-- Секция с товарами -->
+         <section class="featured-products">
+            <div class="container">
+                <h2>Популярные товары</h2>
+                <div class="product-grid">
+                    <!-- Здесь будут карточки товаров -->
+                     <div class="product-card">
+                        <a href="#" class="product-card-main-link">
+                            <img src="" alt="">
+                            <h3>Тут будет название</h3>
+                        </a>
+                        <p class="price">тут будет цена</p>
+                        <button class="btn btn-secondary">В корзину</button>
+                     </div>
+                </div>
+            </div>
+         </section>
+     </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2023 TechStore. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
