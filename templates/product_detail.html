@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ product.name }} - TechStore</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="logo"><a href="{% url 'home' %}" class="logo-link">TechStore</a></div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="{% url 'home' %}">Главная</a></li>
+                    <li><a href="#">Каталог</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="search" placeholder="Поиск...">
+                <a href="#" class="cart-icon">🛒<span class="cart-count">0</span></a>
+                <a href="#" class="login-btn">Войти</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="product-detail-section">
+            <div class="container product-detail-container">
+                <div class="product-image-gallery">
+                        <img src="{{ product.image.url }}" alt="названия изображений">
+                </div>
+                <div class="product-info">
+                    <h1>{{ product.name }}</h1>
+                    <p class="product-detail-price">{{ product.price | stringformat:".0f" }} ₽</p>
+                    <p class="stock-status">
+                        {% if product.stock > 0 and product.is_available %}
+                            <span class="in-stock">В наличии</span>
+                        {% else %}
+                            <span class="out-of-stock">Нет в наличии</span>
+                        {% endif %}
+                     </p>
+                    <div class="description">
+                        <h3>Описание</h3>
+                        <p>{{ product.description }}</p>
+                    </div>
+                    <button class="btn btn-primary btn-lg">Добавить в корзину</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 TechStore. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
+ 
