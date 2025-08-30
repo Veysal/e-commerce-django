@@ -1,36 +1,9 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TechStore - Магазин компьютерной техники</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-</head>
-<body>
-    <header class="site-header">
-        <div class="container">
-            <div class="logo"><a href="{% url 'home' %}" class="logo-link">TechStore</a></div>
-            <!-- Навигация -->
-            <nav class="main-nav">
-                <ul>
-                    <li><a href="{% url 'home' %}">Главная</a></li>
-                    <li><a href="#">Каталог</a></li>
-                    <li><a href="#">О нас</a></li>
-                    <li><a href="#">Контакты</a></li>
-                </ul>
-            </nav>
-            <!-- Корзина и поиск -->
-            <div class="header-actions">
-                <input type="text" placeholder="Поиск">
-                <a href="#" class="cart-icon">🛒<span class="cart-count">0</span></a>
-                <a href="#" class="login-btn">Войти</a>
-            </div>
-        </div>
-    </header>
 
-    <!-- Основной контент -->
-     <main>
+{% block title %}TechStore - Магазин компьютерной техники{% endblock %}
+
+    {% block content %}
         <section class="hero">
             <div class="container">
                 <h1>Добро пожаловать в TechStore!</h1>
@@ -58,12 +31,4 @@
                 </div>
             </div>
          </section>
-     </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; 2023 TechStore. Все права защищены.</p>
-        </div>
-    </footer>
-</body>
-</html>
+    {% endblock %}

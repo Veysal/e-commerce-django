@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Блок title будет заменяться на дочерних страницах -->
+    <title>{% block title %}TechStore{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+        <div class="logo"><a href="{% url 'store:home' %}" class="logo-link">TechStore</a></div>
+            <nav class="main-nav">
+                <ul>
+                <li><a href="{% url 'store:home' %}">Главная</a></li>
+                    <li><a href="{% url 'store:category_list' %}">Каталог</a></li>
+                    <li><a href="#">О нас</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <input type="search" placeholder="Поиск...">
+                <a href="#" class="cart-icon">🛒<span class="cart-count">0</span></a>
+                <a href="#" class="login-btn">Войти</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 TechStore. Все права защищены.</p>
+        </div>
+    </footer>
+</body>
+</html>
