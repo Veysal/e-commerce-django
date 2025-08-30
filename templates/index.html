@@ -20,7 +20,7 @@
                     <!-- Здесь будут карточки товаров -->
                     {% for product in products %}
                      <div class="product-card">
-                        <a href="{% url 'product_detail' product.slug %}" class="product-card-main-link">
+                        <a href="" class="product-card-main-link">
                             <img src="{{ product.image.url }}" alt="{{ product.name }}">
                             <h3>{{ product.name }}</h3>
                         </a>

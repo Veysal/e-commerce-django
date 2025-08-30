@@ -1,5 +1,6 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Product, Category
+from django.db.models import Count, Q
 
 # Create your views here.
 def home(request):
@@ -9,7 +10,20 @@ def home(request):
 
 
 def product_detail(request, product_slug):
-    # get_object_or_404 либо находит объектб либо возвращает ошибку 404
+    # get_object_or_404 либо находит объект либо возвращает ошибку 404
     product = get_object_or_404(Product, slug = product_slug,is_available = True)
     context = {'product': product}
     return render(request, 'product_detail.html', context)
+
+def category_list(request):
+    categories = Category.objects.annotate(
+        product_count = Count('products', filter=Q(products__is_available=True))
+    ).order_by('-product_count', 'name')
+    context = {'categories': categories}
+    return render(request, "store/category_list.html", context)
+
+
+def product_list_by_category(request, category_slug):
+    return render(request, "store/product_list_by_category.html" )
+
+# get_object_or_404 - только для объектов

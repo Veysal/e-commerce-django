@@ -8,14 +8,16 @@
         <div class="page-header">
             <h1>Каталог товаров</h1>
         </div>
-
         <div class="category-grid">
+            {% for category in categories %}
             <a href="" class="category-card">
+                <img src="{{ category.image.url }}" class="category-card-img" alt="{{ category.name }}">
                 <div class="category-card-body">
-                    <h3></h3>
-                    <p class="product-count">Товаров: </p>
+                    <h3>{{ category.name }}</h3>
+                    <p class="product-count">Товаров: {{category.product_count}}</p>
                 </div>
             </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

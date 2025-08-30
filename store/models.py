@@ -4,6 +4,7 @@ from django.db import models
 class Category(models.Model):
     name = models.CharField(max_length=255, unique=True, verbose_name="Название категории")
     slug = models.SlugField(max_length=255, unique=True, help_text="Используется для URL, например 'videokarty'")
+    image = models.ImageField(upload_to='categories/%Y/%m/%d', blank=True, verbose_name="Изображения категории")
 
     class Meta:
         # Настройки для отображения в админ-панели
