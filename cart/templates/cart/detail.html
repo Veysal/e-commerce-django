@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Ваша корзина{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1>Ваша корзина</h1>
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Изображение</th>
+                <th>Товар</th>
+                <th>Количество</th>
+                <th>Удалить</th>
+                <th>Цена за шт.</th>
+                <th>Общая цена</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        <a href="">
+                            <img src="" class="cart-item-img">
+                        </a>
+                    </td>
+                    <td>Тут имя</td>
+                    <td>
+                        <form action="" method="post" class="update-form">
+                    
+                            <button type="submit" class="update-btn">Обновить</button>
+                        </form>
+                    </td>
+                    <td>
+                        <form action="" method="post">
+                            
+                            <button type="submit" class="remove-btn">❌</button>
+                        </form>
+                    </td>
+                    <td class="num">₽</td>
+                    <td class="num"> ₽</td>
+                </tr>
+            <tr class="total">
+                <td colspan="5">Итого</td>
+                <td class="num">₽</td>
+            </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="" class="btn btn-secondary">Продолжить покупки</a>
+        <a href="#" class="btn btn-primary">Оформить заказ</a>
+    </p>
+        <p>Ваша корзина пуста.</p>
+        <a href="" class="btn btn-primary">К покупкам</a>
+</div>
+{% endblock %}
+ 

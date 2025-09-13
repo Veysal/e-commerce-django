@@ -1,27 +1,31 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Товары в категории:{% endblock %}
+{% block title %}Товары в категории:{{ category.name }}{% endblock %}
 
 {% block content %}
     <div class="container">
         <div class="page-header">
-            <h1></h1>
+            <h1>{{category.name}}</h1>
         </div>
 
         <section class="category-products">
+            {% if products %}
                 <div class="product-grid">
+                    {% for product in products %}
                         <div class="product-card">
-                            <a href="" class="product-card-main-link">
-                                    <img src="" alt="">
-                                <img src=" " alt="Нет изображения"> 
-                                <h3></h3>
+                            <a href="{{ product.get_absolute_url }}" class="product-card-main-link">
+                                <img src="{{ product.image.url }}" alt="">
+                                <h3>{{ product.name }}</h3>
                             </a>
-                            <p class="price"> ₽</p>
+                            <p class="price">{{ product.price|stringformat:".0f" }}₽</p>
                             <button class="btn btn-secondary">В корзину</button>
                         </div>
+                    {% endfor %}
                 </div>
+            {% else %}
                 <p class="empty-category-message">В этой категории пока нет товаров.</p>
+            {% endif %}
         </section>
     </div>
 

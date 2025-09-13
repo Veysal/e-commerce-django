@@ -390,5 +390,142 @@ img{
     color: var(--secondary-color);
 }
 }
+
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse; /* Убираем двойные рамки */
+    margin: 2rem 0;
+    font-size: 1rem;
+}
+
+.cart-table thead th {
+    font-weight: 500;
+    text-align: left;
+    color: #6c757d;
+    text-transform: uppercase;
+    font-size: 0.85em;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.cart-table tbody td {
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle; /* Выравниваем содержимое по центру по вертикали */
+}
+
+.cart-table tbody tr:last-child td {
+    border-bottom: none; /* Убираем рамку у последней строки */
+}
+
+.cart-item-img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Стили для ячеек с числами (цена, сумма) */
+.cart-table .num {
+    text-align: right;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+    min-width: 120px;
+}
+
+/* Кнопка удаления товара */
+.remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #6c757d;
+    padding: 0;
+    transition: color 0.2s ease-in-out;
+}
+
+.remove-btn:hover {
+    color: #dc3545; /* Красный при наведении */
+}
+
+/* Строка с итоговой суммой */
+.cart-table tr.total td {
+    font-size: 1.25rem;
+    font-weight: 700;
+    border-top: 2px solid #343a40;
+    padding-top: 1.5rem;
+}
+
+/* Контейнер для кнопок "Продолжить покупки" и "Оформить заказ" */
+.text-right {
+    text-align: right;
+    margin-top: 1rem;
+}
+
+.text-right .btn {
+    margin-left: 0.5rem; /* Небольшой отступ между кнопками */
+}
+
+/* Сообщение для пустой корзины */
+.cart-empty-message {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin: 2rem 0;
+}
+
+.cart-empty-message p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+
+
+/* --- Стили для формы обновления количества в корзине --- */
+.update-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Стили выпадающего списка (<select>) */
+.update-form select {
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1rem;
+    background-color: #fff;
+    cursor: pointer;
+    max-width: 70px; 
+}
+
+/* Стилизация кнопки "Обновить" */
+.update-btn {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff; 
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+
+.update-btn:hover {
+    background-color: #0056b3; 
+}
+
+/* Стилизация кнопки удаления для единообразия */
+.remove-btn {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 5px;
+}
  
 

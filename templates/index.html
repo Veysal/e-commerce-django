@@ -8,7 +8,7 @@
             <div class="container">
                 <h1>Добро пожаловать в TechStore!</h1>
                 <p>Современные комплекующие и периферия по лучшим ценам</p>
-                <a href="#" class="btn btn-primary">Перейти в каталог</a>
+                <a href="{% url 'store:category_list' %}" class="btn btn-primary">Перейти в каталог</a>
             </div>
         </section>
 
@@ -20,7 +20,7 @@
                     <!-- Здесь будут карточки товаров -->
                     {% for product in products %}
                      <div class="product-card">
-                        <a href="" class="product-card-main-link">
+                        <a href="{% url 'store:product_detail' product.slug %}" class="product-card-main-link">
                             <img src="{{ product.image.url }}" alt="{{ product.name }}">
                             <h3>{{ product.name }}</h3>
                         </a>
