@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Спасибо за заказ{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="order-success-message">
+        <h1>Спасибо!</h1>
+        <p>Ваш заказ успешно оформлен. Номер вашего заказа: <strong></strong>.</p>
+        <p>Мы отправили подтверждение на ваш email. В ближайшее время наш менеджер свяжется с вами для уточнения деталей доставки.</p>
+        <a href="" class="btn btn-primary">Вернуться на главную</a>
+    </div>
+</div>
+{% endblock %}

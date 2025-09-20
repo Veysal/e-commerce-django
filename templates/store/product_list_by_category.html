@@ -1,32 +1,39 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Товары в категории:{{ category.name }}{% endblock %}
+{% block title %}Товары в категории: {{ category.name }}{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="page-header">
-            <h1>{{category.name}}</h1>
-        </div>
-
-        <section class="category-products">
-            {% if products %}
-                <div class="product-grid">
-                    {% for product in products %}
-                        <div class="product-card">
-                            <a href="{{ product.get_absolute_url }}" class="product-card-main-link">
-                                <img src="{{ product.image.url }}" alt="">
-                                <h3>{{ product.name }}</h3>
-                            </a>
-                            <p class="price">{{ product.price|stringformat:".0f" }}₽</p>
-                            <button class="btn btn-secondary">В корзину</button>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% else %}
-                <p class="empty-category-message">В этой категории пока нет товаров.</p>
-            {% endif %}
-        </section>
+<div class="container">
+    <div class="page-header">
+        <h1>{{ category.name }}</h1>
     </div>
 
+    <section class="category-products">
+        {% if products %}
+            <div class="product-grid">
+                {% for product in products %}
+                    <div class="product-card">
+                        <a href="{{ product.get_absolute_url }}" class="product-card-main-link">
+                            {% if product.image %}
+                                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                            {% else %}
+                                <img src="https://via.placeholder.com/300x200.png/dee2e6/6c757d?text=No+Image" alt="Нет изображения">
+                            {% endif %}
+                            <h3>{{ product.name }}</h3>
+                        </a>
+                        <p class="price">{{ product.price|floatformat:"0" }} ₽</p>
+                        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn btn-secondary">В корзину</button>
+                        </form>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="empty-category-message">В этой категории пока нет товаров.</p>
+        {% endif %}
+    </section>
+</div>
 {% endblock %}

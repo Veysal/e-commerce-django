@@ -1,6 +1,7 @@
 from django.shortcuts import render,get_object_or_404
 from .models import Product, Category
 from django.db.models import Count, Q
+from cart.forms import CartAddProductForm
 
 # Create your views here.
 def home(request):
@@ -12,7 +13,8 @@ def home(request):
 def product_detail(request, product_slug):
     # get_object_or_404 либо находит объект либо возвращает ошибку 404
     product = get_object_or_404(Product, slug = product_slug,is_available = True)
-    context = {'product': product}
+    cart_product_form = CartAddProductForm()
+    context = {'product': product, 'cart_product_form': cart_product_form}
     return render(request, 'product_detail.html', context)
 
 def category_list(request):

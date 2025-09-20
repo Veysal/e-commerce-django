@@ -23,9 +23,12 @@
                         <h3>Описание</h3>
                         <p>{{ product.description }}</p>
                     </div>
-                    <button class="btn btn-primary btn-lg">Добавить в корзину</button>
+                    <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                        {% csrf_token %}
+                        {{ cart_product_form }}
+                        <button type="submit" class="btn btn-primary btn-lg">Добавить в корзину</button>
+                    </form>
                 </div>
             </div>
         </section>
     {% endblock %}
-

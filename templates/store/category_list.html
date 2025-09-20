@@ -4,20 +4,25 @@
 {% block title %}Каталог товаров{% endblock %}
 
 {% block content %}
-    <div class="container">
-        <div class="page-header">
-            <h1>Каталог товаров</h1>
-        </div>
-        <div class="category-grid">
-            {% for category in categories %}
-            <a href="{{ category.get_absolute_url }}" class="category-card">
-                <img src="{{ category.image.url }}" class="category-card-img" alt="{{ category.name }}">
-                <div class="category-card-body">
-                    <h3>{{ category.name }}</h3>
-                    <p class="product-count">Товаров: {{category.product_count}}</p>
-                </div>
-            </a>
-            {% endfor %}
-        </div>
+<div class="container">
+    <div class="page-header">
+        <h1>Каталог товаров</h1>
     </div>
+
+    <div class="category-grid">
+        {% for category in categories %}
+        <a href="{{ category.get_absolute_url }}" class="category-card">
+            {% if category.image %}
+                <img src="{{ category.image.url }}" alt="{{ category.name }}" class="category-card-img">
+            {% else %}
+                <img src="https://via.placeholder.com/400x300.png/dee2e6/6c757d?text={{ category.name|urlencode }}" alt="{{ category.name }}" class="category-card-img">
+            {% endif %}
+            <div class="category-card-body">
+                <h3>{{ category.name }}</h3>
+                <p class="product-count">Товаров: {{ category.product_count }}</p>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

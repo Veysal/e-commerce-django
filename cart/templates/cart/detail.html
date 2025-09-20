@@ -6,6 +6,7 @@
 {% block content %}
 <div class="container">
     <h1>Ваша корзина</h1>
+    {% if cart|length > 0 %}
     <table class="cart-table">
         <thead>
             <tr>
@@ -18,40 +19,58 @@
             </tr>
         </thead>
         <tbody>
+            {% for item in cart %}
+                {% with product=item.product %}
                 <tr>
                     <td>
-                        <a href="">
-                            <img src="" class="cart-item-img">
+                        <a href="{{ product.get_absolute_url }}">
+                            <img src="{% if product.image %}{{ product.image.url }}{% else %}https://via.placeholder.com/80x80.png/dee2e6/6c757d?text=No+Image{% endif %}" class="cart-item-img">
                         </a>
                     </td>
-                    <td>Тут имя</td>
-                    <td>
-                        <form action="" method="post" class="update-form">
-                    
-                            <button type="submit" class="update-btn">Обновить</button>
-                        </form>
-                    </td>
-                    <td>
-                        <form action="" method="post">
+                    <td>{{ product.name }}</td>
+                    <td class="quantity">
+                        <div style="display: flex; align-items: center; justify-content: center;">
+                            <!-- Форма для кнопки "-" -->
+                            <form action="{% url 'cart:cart_decrement' item.product.id %}" method="post" style="margin-right: 10px;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-secondary">-</button>
+                            </form>
                             
+                            <!-- Отображение количества -->
+                            <span>{{ item.quantity }}</span>
+
+                            <!-- Форма для кнопки "+" -->
+                            <form action="{% url 'cart:cart_increment' item.product.id %}" method="post" style="margin-left: 10px;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-secondary">+</button>
+                            </form>
+                        </div>
+                    </td>
+
+                    <td>
+                        <form action="{% url 'cart:cart_remove' product.id %}" method="post">
+                            {% csrf_token %}
                             <button type="submit" class="remove-btn">❌</button>
                         </form>
                     </td>
-                    <td class="num">₽</td>
-                    <td class="num"> ₽</td>
+                    <td class="num">{{ item.price|floatformat:"0" }} ₽</td>
+                    <td class="num">{{ item.total_price|floatformat:"0" }} ₽</td>
                 </tr>
+                {% endwith %}
+            {% endfor %}
             <tr class="total">
                 <td colspan="5">Итого</td>
-                <td class="num">₽</td>
+                <td class="num">{{ cart.get_total_price|floatformat:"0" }} ₽</td>
             </tr>
         </tbody>
     </table>
     <p class="text-right">
-        <a href="" class="btn btn-secondary">Продолжить покупки</a>
+        <a href="{% url 'store:home' %}" class="btn btn-secondary">Продолжить покупки</a>
         <a href="#" class="btn btn-primary">Оформить заказ</a>
     </p>
+    {% else %}
         <p>Ваша корзина пуста.</p>
-        <a href="" class="btn btn-primary">К покупкам</a>
+        <a href="{% url 'store:home' %}" class="btn btn-primary">К покупкам</a>
+    {% endif %}
 </div>
 {% endblock %}
- 

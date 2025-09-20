@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Оформление заказа{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="checkout-layout">
+        <div class="order-form-container">
+            <h1>Оформление заказа</h1>
+            <p>Пожалуйста, заполните форму ниже, чтобы разместить ваш заказ.</p>
+            <form method="post" class="order-form">
+                <div class="form-group">
+                    <label for=""></label>
+                        <div class="form-errors">
+                            <p></p>
+                        </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg btn-block">Разместить заказ</button>
+            </form>
+        </div>
+
+        <div class="order-summary">
+            <h3>Ваш заказ</h3>
+            <ul>
+                <li class="summary-item">
+                    <span class="summary-item-name"></span>
+                    <span class="summary-item-price"> ₽</span>
+                </li>
+            </ul>
+            <div class="summary-total">
+                <span>Итого</span>
+                <span class="total-price"> ₽</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

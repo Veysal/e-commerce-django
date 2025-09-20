@@ -1,34 +1,43 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}TechStore - Магазин компьютерной техники{% endblock %}
+{% block title %}TechStore - Магазин Компьютерной Техники{% endblock %}
 
-    {% block content %}
+{% block content %}
         <section class="hero">
             <div class="container">
-                <h1>Добро пожаловать в TechStore!</h1>
-                <p>Современные комплекующие и периферия по лучшим ценам</p>
+                <h1>Лучшая компьютерная техника</h1>
+                <p>Современные комплектующие и периферия по лучшим ценам.</p>
                 <a href="{% url 'store:category_list' %}" class="btn btn-primary">Перейти в каталог</a>
             </div>
         </section>
 
-        <!-- Секция с товарами -->
-         <section class="featured-products">
+        <section class="featured-products">
             <div class="container">
                 <h2>Популярные товары</h2>
                 <div class="product-grid">
-                    <!-- Здесь будут карточки товаров -->
+                    <!-- Начинаем цикл для отображения товаров из базы данных -->
                     {% for product in products %}
-                     <div class="product-card">
-                        <a href="{% url 'store:product_detail' product.slug %}" class="product-card-main-link">
-                            <img src="{{ product.image.url }}" alt="{{ product.name }}">
-                            <h3>{{ product.name }}</h3>
-                        </a>
-                        <p class="price">{{ product.price | stringformat:".0f" }} ₽</p>
-                        <button class="btn btn-secondary">В корзину</button> 
-                     </div>
+                        <div class="product-card">
+                            <a href="{% url 'store:product_detail' product.slug %}" class="product-card-main-link">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                                {% else %}
+                                    <img src="https://via.placeholder.com/300x200.png/dee2e6/6c757d?text=No+Image" alt="Нет изображения">
+                                {% endif %}
+                                <h3>{{ product.name }}</h3>
+                            </a>
+                                <!-- stringformat убирает .00 с цены, если она целая -->
+                                <p class="price">{{ product.price|floatformat:"0" }} ₽</p>
+                                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="quantity" value="1">
+                                    <button type="submit" class="btn btn-secondary">В корзину</button>
+                                </form>
+                        </div>
                     {% endfor %}
+                    <!-- Конец цикла -->
                 </div>
             </div>
-         </section>
-    {% endblock %}
+        </section>
+{% endblock %}
